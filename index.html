@@ -1,18 +1,75 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="it">
+<head>
+  <meta charset="utf-8" /> <!-- set di caratteri UTF-8 -->
+  <meta name="viewport" content="width=device-width,initial-scale=1" /> <!-- rende il layout responsive -->
+  <title>Visione d’insieme – Vulcani del mondo</title>
 
-    <title>Sketch</title>
+  <!-- Font Google (Poppins, usato ovunque nel sito) -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" type="text/css" href="style.css">
+  <!-- Foglio di stile principale -->
+  <link rel="stylesheet" href="style.css">
 
-    <script src="libraries/p5.min.js"></script>
-    <script src="libraries/p5.sound.min.js"></script>
-  </head>
+  <!-- Libreria p5.js (per disegno e mappa interattiva) -->
+  <script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.min.js"></script>
 
-  <body>
-    <script src="sketch.js"></script>
-  </body>
+  <!-- Script personalizzato del progetto -->
+  <script src="sketch.js" defer></script>
+</head>
+<body>
+  <!-- HEADER -->
+  <header>
+    <h1>Visione d’insieme: Vulcani del mondo</h1> <!-- titolo principale -->
+    <p>
+      Ogni punto rappresenta un vulcano. <strong>Dimensione</strong>: proporzionale all’altitudine •
+      <strong>Colore</strong>: scala altitudine (rosso → arancione → giallo)
+    </p> <!-- descrizione legenda -->
+  </header>
+
+  <!-- CONTENUTO PRINCIPALE -->
+  <main id="main">
+    <section id="map-card"> <!-- sezione principale che contiene la mappa e la legenda -->
+      
+      <div id="canvas-wrapper"></div> <!-- qui p5.js inserisce il canvas con la mappa -->
+
+      <!-- LEGGENDA ALTITUDINE -->
+      <aside id="altitude-legend" aria-hidden="true">
+        <h4>Elevator</h4> <!-- titolo della barra -->
+        <div class="top">+7000 m</div> <!-- valore massimo -->
+        <div class="bar"></div> <!-- barra colorata gradiente -->
+        <div class="labels">
+          <div class="bottom">-6000 m</div> <!-- valore minimo -->
+        </div>
+      </aside>
+
+      <!-- TOOLTIP VOLCANO -->
+      <div id="tooltip" role="dialog" aria-hidden="true">
+        <div class="tt-title">Titolo</div> <!-- titolo del vulcano -->
+        <div class="tt-body"></div> <!-- contenuto informativo (aggiornato via JS) -->
+      </div>
+      
+      <!-- SLIDE INFERIORE (CON OVERLAY) -->
+      <div id="slide-overlay" aria-hidden="true"></div> <!-- sfondo trasparente per chiudere la slide cliccando fuori -->
+
+      <div id="volcano-slide" aria-hidden="true">
+        <div class="slide-content"> <!-- contenitore con padding e layout -->
+          <button class="close-btn" aria-label="Chiudi scheda">×</button> <!-- bottone di chiusura -->
+          <div class="slide-header"> <!-- header della slide con barra colorata -->
+            <div class="slide-accent"></div> <!-- barra colorata che cambia in base al vulcano -->
+            <h2 id="slide-title">Titolo vulcano</h2> <!-- titolo aggiornato dal JS -->
+          </div>
+          <div id="slide-body"></div> <!-- corpo della slide con info del vulcano -->
+        </div>
+      </div>
+
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    Progetto di Informatica Applicata – “Visione d’insieme” (2025) - Emma Della Valle
+    <img src="logo politecnico.png" alt="Logo Politecnico di Milano" class="logo-poli"> <!-- logo del PoliMi -->
+  </footer>
+</body>
 </html>
