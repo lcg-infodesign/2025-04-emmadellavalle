@@ -15,8 +15,8 @@ function preload() {
   table = loadTable(CSV_FILE, "csv", "header");
   worldImg = loadImage(
     MAP_FILE,
-    () => console.log("✅ Mappa caricata"),
-    () => console.error("❌ Errore caricamento mappa")
+    () => console.log("Mappa caricata"),
+    () => console.error("Errore caricamento mappa")
   );
 }
 
